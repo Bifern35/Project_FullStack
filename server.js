@@ -39,6 +39,23 @@ app.get('/products', function(req,res){
     
 });
 
+app.get('/products', function(req,res){
+    var id = req.param('id');
+    var sql = 'select * from products';
+    if(id){
+        sql += ' where id = '+ id; 
+    }
+        db.any(sql)
+        .then(function(data){
+            console.log('DATA:'+data);
+            res.render('pages/products',{products : data});
+        })
+        .catch(function(error){
+            console.log('ERROR:'+error);
+        })
+    
+});
+
 app.get('/products/:pid', function(req,res){
     var pid = req.params.pid;
     var sql = 'select * from products where id =' + pid;
@@ -50,15 +67,7 @@ app.get('/products/:pid', function(req,res){
             console.log('ERROR:'+error);
         })
 })
-app.post('/product/update',function(req, res) {
-    var id = req.body.id;
-    var title = req.body.title;
-    var price = req.body.price;
-    var sql=`update products set title = "${title}", price= "${price}" where id = ${id}`;
-    console.log('Update: '+sql);
-    res.redirect('/products');
 
-});
 app.get('/product_new', function(req,res){
     res.render('pages/product_new');
 });
