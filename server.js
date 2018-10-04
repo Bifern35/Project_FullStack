@@ -15,6 +15,13 @@ app.get('/index', function(req,res){
     res.render('pages/index');
 });
 
+app.get('/about', function(req,res){
+    var name = 'Suthathip Manikan';
+    var major = 'Software Engineering';
+    var ID = '5930213005';
+    res.render('pages/about',{fullname : name, major : major, SID : ID});   
+});
+
 var port = process.env.PORT || 3000;
     app.listen(port, function() {
     console.log('App is running on http://localhost:' + port);
