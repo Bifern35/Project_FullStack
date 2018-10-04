@@ -50,6 +50,7 @@ app.get('/products/:pid', function(req,res){
             console.log('ERROR:'+error);
         })
 })
+
 var port = process.env.PORT || 3000;
     app.listen(port, function() {
     console.log('App is running on http://localhost:' + port);
