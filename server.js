@@ -50,7 +50,16 @@ app.get('/products/:pid', function(req,res){
             console.log('ERROR:'+error);
         })
 })
+app.post('/product/update',function(req, res) {
+    var id = req.body.id;
+    var title = req.body.title;
+    //var sql = 'update product set title = "'+title+'" , price= "'+price+'" = where id =' + id; 
+    var sql=`update product set title = ${title}, price= ${price} = where id = ${id}`;//alt+9+6
+    //db.none
+    console.log('Uodate: '+sql);
+    res.redirect('/products');
 
+});
 var port = process.env.PORT || 3000;
     app.listen(port, function() {
     console.log('App is running on http://localhost:' + port);
