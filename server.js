@@ -54,10 +54,25 @@ app.post('/product/update',function(req, res) {
     var id = req.body.id;
     var title = req.body.title;
     var price = req.body.price;
-    var sql=`update products set title = ${title}, price= ${price} = where id = ${id}`;
+    var sql=`update products set title = "${title}", price= "${price}" where id = ${id}`;
     console.log('Update: '+sql);
     res.redirect('/products');
 
+});
+app.get('/product_new', function(req,res){
+    res.render('pages/product_new');
+});
+app.post('/product/addNew',function(req, res) {
+    var title = req.body.title;
+    var price = req.body.price;
+    var sql=`insert into products (title,price) values (${title},${price})`;
+    db.any(sql)
+        .then(function(data){
+            res.render('/products',{product : data[0]});
+        })
+        .catch(function(error){
+            console.log('ERROR:'+error);
+        })
 });
 var port = process.env.PORT || 3000;
     app.listen(port, function() {

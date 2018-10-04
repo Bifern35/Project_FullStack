@@ -15,9 +15,9 @@
 <body>
     <% include ../partials/navbar %>
     <div class="container">
-    <form action="/product/" method="post">
+    <form action="/product/addNew" method="post">
         <div class="form-group">
-            <label for="/products/update">ID</label>
+            <label for="/products/addNew">ID</label>
             <input type="number" class="form-control" value="" name="id" id="" aria-describedby="helpId"
                 placeholder="">
             <small id="helpId" class="form-text text-muted">Product ID</small>
@@ -35,7 +35,8 @@
                 placeholder="">
             <small id="helpId" class="form-text text-muted">Product Price</small>
         </div>
-        <button type="submit" class="btn btn-success">Save</button>
+        <button type="submit" class="btn btn-info">Add New</button>
+        <a name="" id="" class="btn btn-danger" href="products" role="button">Cancle</a>
     </form>
     </div>
     <!-- Optional JavaScript -->
