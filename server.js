@@ -22,6 +22,34 @@ app.get('/about', function(req,res){
     res.render('pages/about',{fullname : name, major : major, SID : ID});   
 });
 
+app.get('/products', function(req,res){
+    var id = req.param('id');
+    var sql = 'select * from products';
+    if(id){
+        sql += ' where id = '+ id; 
+    }
+        db.any(sql)
+        .then(function(data){
+            console.log('DATA:'+data);
+            res.render('pages/products',{products : data});
+        })
+        .catch(function(error){
+            console.log('ERROR:'+error);
+        })
+    
+});
+
+app.get('/products/:pid', function(req,res){
+    var pid = req.params.pid;
+    var sql = 'select * from products where id =' + pid;
+    db.any(sql)
+        .then(function(data){
+            res.render('pages/product_edit',{product : data[0]});
+        })
+        .catch(function(error){
+            console.log('ERROR:'+error);
+        })
+})
 var port = process.env.PORT || 3000;
     app.listen(port, function() {
     console.log('App is running on http://localhost:' + port);
