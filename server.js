@@ -52,7 +52,7 @@ app.get('/products/:pid', function(req,res){
 })
 
 app.post('/product/update',function(req, res) {
-    var id = req.body.id;
+    var id = req.params.pid;
     var title = req.body.title;
     var price = req.body.price;
     var sql=`update product set title = ${title}, price= ${price} = where id = ${id}`;
