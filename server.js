@@ -68,7 +68,7 @@ app.post('/product/update',function(req, res) {
         })
 });
 
-app.get('/productNew', function(req,res){
+app.get('/newproduct', function(req,res){
     res.render('pages/product_new');
 });
 
