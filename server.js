@@ -74,10 +74,10 @@ app.get('/product_new', function(req,res){
 app.post('/product/addNew',function(req, res) {
     var title = req.body.title;
     var price = req.body.price;
-    var sql=`insert into products (title,price) values (${title},${price})`;
+    var sql=`insert into products (title,price) values ('${title}','${price}')`;
     db.any(sql)
         .then(function(data){
-            res.render('/products',{product : data[0]});
+            res.redirect('/products');
         })
         .catch(function(error){
             console.log('ERROR:'+error);
