@@ -71,6 +71,7 @@ app.post('/product/update',function(req, res) {
 app.get('/productNew', function(req,res){
     res.render('pages/product_new');
 });
+
 app.post('/product/addNew',function(req, res) {
     var title = req.body.title;
     var price = req.body.price;
