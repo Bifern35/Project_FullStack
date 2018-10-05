@@ -1,7 +1,7 @@
 var express = require('express');
 var pgp = require('pg-promise')();
 //var db = pgp(process.env.DATABASE_URL);
-var db = pgp('postgres://cuxnftrtbtwnao:025dc7a8a11677bf3e8f12d4119c35a45d9ac05201861e7c9b7d771e9419f197@ec2-23-23-80-20.compute-1.amazonaws.com:5432/d47apuacv58qcr?ssl=true')
+var db = pgp('postgres://wrcduthotaptzq:3162195ea297c5d79995e7a64dd853933145b6a7198533bc94b91195eb8212e1@ec2-23-21-171-249.compute-1.amazonaws.com:5432/d36olaagtfjli9?ssl=true')
 var app = express();
 var bodyParser = require('body-parser');
 app.use(bodyParser.json());
@@ -25,6 +25,7 @@ app.get('/about', function(req,res){
 app.get('/products', function(req,res){
     var id = req.param('id');
     var sql = 'select * from products';
+    
     if(id){
         sql += ' where id = '+ id; 
     }
