@@ -61,7 +61,7 @@ app.get('/products/:pid', function(req,res){
     var sql = 'select * from products where id =' + pid;
     db.any(sql)
         .then(function(data){
-            res.render('pages/product_edit',{product : data[0]});
+            res.render('pages/product_Edit',{product : data[0]});
         })
         .catch(function(error){
             console.log('ERROR:'+error);
