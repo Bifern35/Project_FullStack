@@ -52,13 +52,11 @@ app.get('/products/:pid', function(req,res){
 })
 
 app.post('/product/update',function(req, res) {
-    var id = req.params.id;
+    var id = req.body.id;
     var title = req.body.title;
     var price = req.body.price;
-    var sql=`update product set title = ${title}, price= ${price} where id = ${id}`;
-    if(id){
-        sql; 
-    }
+    var sql=`update products set title = '${title}' , price= '${price}' where id = ${id}`;
+   
         db.any(sql)
         .then(function(data){
             console.log('Update: '+sql);

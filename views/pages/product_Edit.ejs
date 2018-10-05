@@ -18,8 +18,8 @@
     <form action="/product/update" method="post">
         <div class="form-group">
             <label for="/products/update">ID</label>
-            <input type="number" class="form-control" disabled="disabled" value="<%= product.id %>" name="id" id="" aria-describedby="helpId"
-                placeholder="">
+            <input type="number" class="form-control"  value="<%= product.id %>" name="id" id="" aria-describedby="helpId"
+                placeholder="" readonly/>
             <small id="helpId" class="form-text text-muted">Product ID</small>
         </div>
 
