@@ -55,10 +55,18 @@ app.post('/product/update',function(req, res) {
     var id = req.params.pid;
     var title = req.body.title;
     var price = req.body.price;
-    var sql=`update product set title = ${title}, price= ${price} = where id = ${id}`;
-    console.log('Update: '+sql);
-    res.redirect('/products');
-
+    var sql=`update product set title = ${title}, price= ${price} where id = ${id}`;
+    if(id){
+        sql; 
+    }
+        db.any(sql)
+        .then(function(data){
+            console.log('Update: '+sql);
+             res.redirect('/products');
+        })
+        .catch(function(error){
+            console.log('ERROR:'+error);
+        })
 });
 
 app.get('/product_new', function(req,res){
