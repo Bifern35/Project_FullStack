@@ -69,7 +69,16 @@ app.post('/product/update',function(req, res) {
 });
 
 app.get('/newproduct', function(req,res){
-    res.render('pages/product_new');
+    var pid = req.params.pid;
+    var sql = 'select * from products';
+    db.any(sql)
+        .then(function(data){
+            res.render('pages/product_new',{product : data[0]});
+        })
+        .catch(function(error){
+            console.log('ERROR:'+error);
+        })
+    
 });
 
 app.post('/product/addNew',function(req, res) {
