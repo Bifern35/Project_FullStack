@@ -85,8 +85,8 @@ app.post('/product/addNew',function(req, res) {
         })
 });
 app.get('/product_delete/:pid', function(req,res){
-    var pid = req.params.pid;
-    var sql = 'delete from products where id =' + pid;
+    var id = req.params.id;
+    var sql = 'delete from products where id =' + id;
     db.any(sql)
         .then(function(data){
             res.redirect('/products');
