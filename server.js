@@ -72,18 +72,18 @@ app.get('/product_new', function(req,res){
     res.render('pages/product_new');       
 });
 
-// app.post('/product/addNew',function(req, res) {
-//     var title = req.body.title;
-//     var price = req.body.price;
-//     var sql=`insert into products (title,price) values ('${title}','${price}')`;
-//     db.any(sql)
-//         .then(function(data){
-//             res.redirect('/products');
-//         })
-//         .catch(function(error){
-//             console.log('ERROR:'+error);
-//         })
-// });
+app.post('/product/addNew',function(req, res) {
+    var title = req.body.title;
+    var price = req.body.price;
+    var sql=`insert into products (title,price) values ('${title}','${price}')`;
+    db.any(sql)
+        .then(function(data){
+            res.redirect('/products');
+        })
+        .catch(function(error){
+            console.log('ERROR:'+error);
+        })
+});
 var port = process.env.PORT || 3000;
     app.listen(port, function() {
     console.log('App is running on http://localhost:' + port);
