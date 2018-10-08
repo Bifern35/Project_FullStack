@@ -68,31 +68,31 @@ app.post('/product/update',function(req, res) {
         })
 });
 
-app.get('/newproduct', function(req,res){
-    var pid = req.params.pid;
-    var sql = 'select * from products';
-    db.any(sql)
-        .then(function(data){
-            res.render('pages/product_new',{product : data[0]});
-        })
-        .catch(function(error){
-            console.log('ERROR:'+error);
-        })
+// app.get('/newproduct', function(req,res){
+//     var pid = req.params.pid;
+//     var sql = 'select * from products';
+//     db.any(sql)
+//         .then(function(data){
+//             res.render('pages/product_new',{product : data[0]});
+//         })
+//         .catch(function(error){
+//             console.log('ERROR:'+error);
+//         })
     
-});
+// });
 
-app.post('/product/addNew',function(req, res) {
-    var title = req.body.title;
-    var price = req.body.price;
-    var sql=`insert into products (title,price) values ('${title}','${price}')`;
-    db.any(sql)
-        .then(function(data){
-            res.redirect('/products');
-        })
-        .catch(function(error){
-            console.log('ERROR:'+error);
-        })
-});
+// app.post('/product/addNew',function(req, res) {
+//     var title = req.body.title;
+//     var price = req.body.price;
+//     var sql=`insert into products (title,price) values ('${title}','${price}')`;
+//     db.any(sql)
+//         .then(function(data){
+//             res.redirect('/products');
+//         })
+//         .catch(function(error){
+//             console.log('ERROR:'+error);
+//         })
+// });
 var port = process.env.PORT || 3000;
     app.listen(port, function() {
     console.log('App is running on http://localhost:' + port);
