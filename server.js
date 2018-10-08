@@ -89,7 +89,7 @@ app.get('/product_delete/:pid', function(req,res){
     var sql = 'delete from products where id =' + pid;
     db.any(sql)
         .then(function(data){
-            res.render('pages/product_Edit',{product : data[0]});
+            res.redirect('/products');
         })
         .catch(function(error){
             console.log('ERROR:'+error);
