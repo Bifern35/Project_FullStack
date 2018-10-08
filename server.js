@@ -84,6 +84,17 @@ app.post('/product/addNew',function(req, res) {
             console.log('ERROR:'+error);
         })
 });
+app.get('/product_delete/:pid', function(req,res){
+    var pid = req.params.pid;
+    var sql = 'delete from products where id =' + pid;
+    db.any(sql)
+        .then(function(data){
+            res.render('pages/product_Edit',{product : data[0]});
+        })
+        .catch(function(error){
+            console.log('ERROR:'+error);
+        })
+})
 var port = process.env.PORT || 3000;
     app.listen(port, function() {
     console.log('App is running on http://localhost:' + port);
