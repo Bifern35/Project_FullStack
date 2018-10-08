@@ -68,8 +68,8 @@ app.post('/product/update',function(req, res) {
         })
 });
 
-app.get('/newproduct', function(req,res){
-    res.render('pages/product_new',{product : data[0]});       
+app.get('/product_new', function(req,res){
+    res.render('pages/product_new');       
 });
 
 // app.post('/product/addNew',function(req, res) {
