@@ -15,7 +15,7 @@
 <body>
     <% include ../partials/navbar %>
     <div class="container">
-    <form action="/product/update" method="post">
+    <form action="/product/addNew" method="post">
         <div class="form-group">
             <label for="/products/update">ID</label>
             <input type="number" class="form-control"  value="" name="id" id="" aria-describedby="helpId"
@@ -36,8 +36,9 @@
             <small id="helpId" class="form-text text-muted">Product Price</small>
         </div>
         <button type="submit" class="btn btn-success">Save</button>
-    </form>
         <a name="" id="" class="btn btn-danger" href="/products" role="button">Cancle</a>
+    </form>
+        
     </div>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
