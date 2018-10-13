@@ -15,29 +15,40 @@
 <body>
     <% include ../partials/navbar %>
     <div class="container">
-    <form action="/product/update" method="post">
-        <div class="form-group">
-            <label for="/products/update">ID</label>
-            <input type="number" class="form-control"  value="<%= product.id %>" name="id" id="" aria-describedby="helpId"
-                placeholder="" readonly/>
-            <small id="helpId" class="form-text text-muted">Product ID</small>
-        </div>
+        <form action="/product/update" method="post">
+            <div class="form-group">
+                <label for="/products/update">ID</label>
+                <input type="number" class="form-control" value="<%= product.id %>" name="id" id="" aria-describedby="helpId"
+                    placeholder="" readonly />
+                <small id="helpId" class="form-text text-muted">Product ID</small>
+            </div>
 
-        <div class="form-group">
-            <label for="">Title</label>
-            <input type="text" value="<%= product.title %>" name="title" id="" class="form-control" placeholder=""
-                aria-describedby="helpId">
-            <small id="helpId" class="text-muted">Product Title</small>
-        </div>
-        <div class="form-group">
-            <label for="">Price</label>
-            <input type="number" class="form-control" value="<%= product.price %>" name="price" id="" aria-describedby="helpId"
-                placeholder="">
-            <small id="helpId" class="form-text text-muted">Product Price</small>
-        </div>
-        <button type="submit" class="btn btn-success">Save</button>
-    </form>
+            <div class="form-group">
+                <label for="">Title</label>
+                <input type="text" value="<%= product.title %>" name="title" id="" class="form-control" placeholder=""
+                    aria-describedby="helpId">
+                <small id="helpId" class="text-muted">Product Title</small>
+            </div>
+            <div class="form-group">
+                <label for="">Price</label>
+                <input type="number" class="form-control" value="<%= product.price %>" name="price" id=""
+                    aria-describedby="helpId" placeholder="">
+                <small id="helpId" class="form-text text-muted">Product Price</small>
+            </div>
+            <button type="submit" onclick="return confirmUpdate();" class="btn btn-success">Save</button>
+            <a name="" id="" onclick="return confirmCancle();" class="btn btn-danger" href="/products" role="button">Cancle</a>
+        </form>
     </div>
+
+    <script>
+        function confirmUpdate() {
+            return confirm('Do you want to update?');
+        }
+
+        function confirmCancle() {
+            return confirm('Do you want to cancle?');
+        }
+    </script>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
