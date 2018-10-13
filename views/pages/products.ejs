@@ -28,12 +28,17 @@
                     <td><%= product.title%></td>
                     <td><%= product.price%></td>
                     <td><a name="" id="" class="btn btn-primary" href="/products/<%= product.id%>" role="button">Edit</a>
-                    <a name="" id="" class="btn btn-danger" href="/product_delete/<%= product.id%>" role="button">Delete</a></td>
+                    <a name="" id="" onclick="return confirmDelete();" class="btn btn-danger" href="/product_delete/<%= product.id%>" role="button">Delete</a></td>
                 </tr>
                 <% }); %>
             </tbody>
         </table>
         </div>
+        <script>
+            function confirmDelete(){
+	            return confirm('Do you want to delete?');
+            }
+        </script>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

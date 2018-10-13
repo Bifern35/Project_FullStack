@@ -95,6 +95,17 @@ app.get('/product_delete/:pid', function(req,res){
             console.log('ERROR:'+error);
         })
 })
+
+app.get('/users', function(req,res){
+    db.any('select * from users',)
+        .then(function(data){
+            console.log('DATA:'+data);
+            res.render('pages/users',{users : data});
+        })
+        .catch(function(error){
+            console.log('ERROR:'+error);
+        })
+});
 var port = process.env.PORT || 3000;
     app.listen(port, function() {
     console.log('App is running on http://localhost:' + port);
