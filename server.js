@@ -98,7 +98,6 @@ app.get('/product_delete/:pid', function(req,res){
 })
 
 app.get('/purchases', function(req,res){
-    var id = req.param('id');
     var sql = `select *
     from  users
     inner join purchases ON purchases.user_id = users.id
