@@ -97,15 +97,23 @@ app.get('/product_delete/:pid', function(req,res){
         })
 })
 
-app.get('/users', function(req,res){
-    db.any('select * from users',)
+app.get('/purchases', function(req,res){
+    var id = req.param('id');
+    var sql = `select *
+    from  users
+    inner join purchases ON purchases.user_id = users.id
+    inner join purchase_items ON purchase_items.purchase_id = purchases.id
+    inner join products ON purchase_items.product_id = products.id
+    order by purchase_items.quantity`;
+        db.any(sql)
         .then(function(data){
             console.log('DATA:'+data);
-            res.render('pages/users',{users : data});
+            res.render('pages/purchases',{purchases : data});
         })
         .catch(function(error){
             console.log('ERROR:'+error);
         })
+    
 });
 var port = process.env.PORT || 3000;
     app.listen(port, function() {
