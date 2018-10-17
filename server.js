@@ -104,7 +104,6 @@ app.get('/purchases', function(req,res){
     var sql = `select purchase_items.purchase_id, 
     string_agg(products.title, ',') as titles, 
     sum(products.price*quantity) as price, 
-    sum(purchase_items.quantity) as quantity,
     purchases.name, purchases.address, users.email
     from  users
     inner join purchases ON purchases.user_id = users.id
