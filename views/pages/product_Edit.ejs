@@ -14,7 +14,7 @@
         <% include ../partials/linkdatepicker %>
 </head>
 
-<body>
+<body style="background-color:#E6FCFF">
     <% include ../partials/navbar %>
     <div class="container">
         <form action="/product/update" method="post">
@@ -54,14 +54,14 @@
                 </script>
                 <small id="helpId" class="text-muted">Date create</small>
             </div>
-            <button type="submit" class="btn btn-success">Save</button>
+            <button type="submit" onclick="return confirmUpdate();" class="btn btn-success">Save</button>
             <a name="" id="" onclick="return confirmCancle();" class="btn btn-danger" href="/products" role="button">Cancle</a>
         </form>
     </div>
 
     <script>
         function confirmUpdate() {
-            return confirm('Do you want to add new product?');
+            return confirm('Do you want to update product?');
         }
 
         function confirmCancle() {
