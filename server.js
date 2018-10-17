@@ -6,7 +6,6 @@ var app = express();
 var bodyParser = require('body-parser');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.static( "public" ));
 
 app.set('view engine','ejs');
 app.get('/', function(req,res){
@@ -102,12 +101,17 @@ app.get('/product_delete/:pid', function(req,res){
 })
 
 app.get('/purchases', function(req,res){
-    var sql = `select *
+    var sql = `select purchase_items.purchase_id, 
+    string_agg(products.title, ',') as titles, 
+    sum(products.price*quantity) as price, 
+    sum(purchase_items.quantity) as quantity,
+    purchases.name, purchases.address, users.email
     from  users
     inner join purchases ON purchases.user_id = users.id
     inner join purchase_items ON purchase_items.purchase_id = purchases.id
     inner join products ON purchase_items.product_id = products.id
-    order by purchase_items.quantity`;
+    group by purchase_items.purchase_id, purchases.name, purchases.address, users.email
+    order by purchase_items.purchase_id`;
         db.any(sql)
         .then(function(data){
             console.log('DATA:'+data);
@@ -118,7 +122,6 @@ app.get('/purchases', function(req,res){
         })
     
 });
-
 var port = process.env.PORT || 3000;
     app.listen(port, function() {
     console.log('App is running on http://localhost:' + port);
