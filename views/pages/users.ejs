@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>Purchases</title>
+    <title>Users</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -17,51 +17,55 @@
 <body style="background-color:#E6FCFF">
     <% include ../partials/navbar %>
     <div class="container">
-        <table id="purchases" class="table table-striped dt-responsive nowrap" style="width:100% ">
+
+        <table id="users" class="table table-striped dt-responsive nowrap" style="width:100%">
+            <colgroup>
+                <col width="100">
+                <col width="300">
+                <col width="300">
+                <col width="200">
+                
+            </colgroup>
             <thead>
                 <tr>
-                    <th>Purchase ID</th>
-                    <th>Product Name</th>
-                    <th>Total Price</th>
-                    <th>User Name</th>
-                    <th>User E-mail</th>
-                    <th>Address</th>
+                    <th>ID</th>
+                    <th>Email</th>
+                    <th>Password</th>
+                    <th><a name="" id="" class="btn btn-info" href="/user_new" role="button">Add New</a></th>
                 </tr>
             </thead>
-
             <tbody>
-                <% purchases.forEach(function(purchase){ %>
+                <% users.forEach(function(user){ %>
                 <tr>
                     <td scope="row">
-                        <%= purchase.user_id%>
+                        <%= user.id%>
                     </td>
                     <td>
-                        <%= purchase.titles%>
+                        <%= user.email%>
                     </td>
                     <td>
-                        <%= purchase.price%>
+                        <%= user.password%>
                     </td>
-                    <td>
-                        <%= purchase.name%>
+                    <td><a name="" id="" class="btn btn-primary" href="/users/<%= user.id%>" role="button">Edit</a>
+                        <a name="" id="" onclick="return confirmDelete();" class="btn btn-danger" href="/user_delete/<%= user.id%>"
+                            role="button">Delete</a>
                     </td>
-                    <td>
-                        <%= purchase.email%>
-                    </td>
-                    <td>
-                        <%= purchase.address%>
-                    </td>
+
                 </tr>
                 <% }); %>
             </tbody>
         </table>
     </div>
 
-
     <script>
-        $('#purchases').DataTable({
+        $('#users').DataTable({
             responsive: true
-
         });
+    </script>
+    <script>
+        function confirmDelete() {
+            return confirm('Do you want to delete ?');
+        }
     </script>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

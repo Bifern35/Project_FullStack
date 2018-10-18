@@ -121,6 +121,31 @@ app.get('/purchases', function(req,res){
         })
     
 });
+
+app.get('/users', function(req,res){
+    var id = req.param('id');
+    var sql = 'select * from users';
+        db.any(sql)
+        .then(function(data){
+            console.log('DATA:'+data);
+            res.render('pages/users',{users : data});
+        })
+        .catch(function(error){
+            console.log('ERROR:'+error);
+        })
+});
+app.get('/user_delete/:pid', function(req,res){
+    var id = req.params.id;
+    var sql = 'delete from products where id =' + id;
+    db.any(sql)
+        .then(function(data){
+            res.redirect('/users');
+        })
+        .catch(function(error){
+            console.log('ERROR:'+error);
+        })
+})
+
 var port = process.env.PORT || 3000;
     app.listen(port, function() {
     console.log('App is running on http://localhost:' + port);
