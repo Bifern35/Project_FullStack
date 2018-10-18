@@ -150,9 +150,9 @@ app.post('/user/addNew',function(req, res) {
             console.log('ERROR:'+error);
         })
 });
-app.get('/user_delete/:uid', function(req,res){
-    var uid = req.params.uid;
-    var sql = 'delete from users where id =' + uid;
+app.get('/user_delete/:userid', function(req,res){
+    var userid = req.params.uid;
+    var sql = 'delete from users where id =' + userid;
     db.any(sql)
         .then(function(data){
             res.redirect('/users');
