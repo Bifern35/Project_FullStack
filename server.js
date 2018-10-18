@@ -134,9 +134,25 @@ app.get('/users', function(req,res){
             console.log('ERROR:'+error);
         })
 });
-app.get('/user_delete/:pid', function(req,res){
-    var id = req.params.id;
-    var sql = 'delete from products where id =' + id;
+app.get('/user_new', function(req,res){
+    res.render('pages/user_new');       
+});
+app.post('/user/addNew',function(req, res) {
+    var email = req.body.email;
+    var password = req.body.password;
+    var created_at = req.body.created_at;
+    var sql=`insert into users (email,password,created_at) values ('${email}','${password}','${created_at}')`;
+    db.any(sql)
+        .then(function(data){
+            res.redirect('/users');
+        })
+        .catch(function(error){
+            console.log('ERROR:'+error);
+        })
+});
+app.get('/user_delete/:uid', function(req,res){
+    var uid = req.params.uid;
+    var sql = 'delete from users where id =' + uid;
     db.any(sql)
         .then(function(data){
             res.redirect('/users');
