@@ -134,6 +134,34 @@ app.get('/users', function(req,res){
             console.log('ERROR:'+error);
         })
 });
+app.get('/users/:userid', function(req,res){
+    var userid = req.params.userid;
+    var sql = 'select * from users where id =' + userid;
+    db.any(sql)
+        .then(function(data){
+            res.render('pages/user_edit',{user : data[0]});
+        })
+        .catch(function(error){
+            console.log('ERROR:'+error);
+        })
+})
+app.post('/user/update',function(req, res) {
+    var id = req.body.id;
+    var email = req.body.email;
+    var password = req.body.password;
+    var created_at = req.body.created_at;
+    var sql=`update users set email = '${email}', password= '{${password}}' , created_at='${created_at}' where id = ${id}`;
+   
+        db.any(sql)
+        .then(function(data){
+            console.log('Update: '+sql);
+             res.redirect('/users');
+        })
+        .catch(function(error){
+            console.log('ERROR:'+error);
+        })
+});
+
 app.get('/user_new', function(req,res){
     res.render('pages/user_new');       
 });
@@ -151,7 +179,7 @@ app.post('/user/addNew',function(req, res) {
         })
 });
 app.get('/user_delete/:userid', function(req,res){
-    var userid = req.params.uid;
+    var userid = req.params.userid;
     var sql = 'delete from users where id =' + userid;
     db.any(sql)
         .then(function(data){

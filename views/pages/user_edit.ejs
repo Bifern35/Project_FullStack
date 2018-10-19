@@ -10,43 +10,43 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B"
         crossorigin="anonymous">
-
-        <% include ../partials/linkdatepicker %>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <% include ../partials/linkdatepicker %>
 </head>
 
 <body style="background-color:#E6FCFF">
     <% include ../partials/navbar %>
     <div class="container">
-        <form action="/product/update" method="post">
+        <form action="/user/update" method="post">
             <div class="form-group">
-                <label for="/product/update">ID</label>
-                <input type="number" class="form-control" value="<%= product.id %>" name="id" id="" aria-describedby="helpId"
+                <label for="/user/update">ID</label>
+                <input type="number" class="form-control" value="<%= user.id%>" name="id" id="" aria-describedby="helpId"
                     placeholder="" readonly />
-                <small id="helpId" class="form-text text-muted">Product ID</small>
+                <small id="helpId" class="form-text text-muted">User ID</small>
             </div>
-
             <div class="form-group">
                 <label for="">Title</label>
-                <input type="text" value="<%= product.title %>" name="title" id="" class="form-control" placeholder=""
+                <input type="email" name="email" value="<%= user.email%>" id="" class="form-control" placeholder=""
                     aria-describedby="helpId">
-                <small id="helpId" class="text-muted">Product Title</small>
+                <small id="helpId" class="text-muted">User Email</small>
             </div>
             <div class="form-group">
-                <label for="">Price</label>
-                <input type="number" class="form-control" value="<%= product.price %>" name="price" id=""
+                <label for="">Password</label>
+                <input type="password" name="password" class="form-control" value="<%= user.password%>" id="password"
                     aria-describedby="helpId" placeholder="">
-                <small id="helpId" class="form-text text-muted">Product Price</small>
+                <small id="helpId" class="form-text text-muted">User password</small>
+
+                <label for="">Comfirm Password</label>
+                <input type="password" name="confirm_password" class="form-control" value="<%= user.password%>" id="confirm_password"
+                    aria-describedby="helpId" placeholder="">
+                <small id="helpId" class="form-text text-muted">Comfirm Password</small>
+                <span id='message'></span>
             </div>
-            <div class="form-group">
-                <label for="">Tags</label>
-                <input type="text" value="<%= product.tags %>" name="tags" id="" class="form-control" placeholder=""
-                    aria-describedby="helpId">
-                <small id="helpId" class="form-text text-muted">Product Tags</small>
-            </div>
+            
             <div class="form-group">
                 <label for="">Create At</label>
-                <input value="<%= product.created_at %>" name="created_at" id="datepicker" width="100%" class="form-control" placeholder=""
-                    aria-describedby="helpId"/>
+                <input value="<%= user.created_at %>" name="created_at" id="datepicker" width="100%" class="form-control"
+                    placeholder="" aria-describedby="helpId" />
                 <script>
                     $('#datepicker').datepicker({
                         uiLibrary: 'bootstrap4'
@@ -55,18 +55,25 @@
                 <small id="helpId" class="text-muted">Date create</small>
             </div>
             <button type="submit" onclick="return confirmUpdate();" class="btn btn-success">Save</button>
-            <a name="" id="" onclick="return confirmCancle();" class="btn btn-danger" href="/products" role="button">Cancle</a>
+            <a name="" id="" onclick="return confirmCancle();" class="btn btn-danger" href="/users" role="button">Cancle</a>
         </form>
     </div>
 
     <script>
         function confirmUpdate() {
-            return confirm('Do you want to update product?');
+            return confirm('Do you want to update user?');
         }
 
         function confirmCancle() {
             return confirm('Do you want to cancle?');
         }
+        $('#password, #confirm_password').on('keyup', function () {
+            if ($('#password').val() == $('#confirm_password').val()) {
+                $('#message').html('Matching').css('color', 'green');
+            } else
+                $('#message').html('Not Matching').css('color', 'red');
+        });
+        
     </script>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
