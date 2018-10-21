@@ -4,8 +4,10 @@ var pgp = require('pg-promise')();
 var db = pgp('postgres://wrcduthotaptzq:3162195ea297c5d79995e7a64dd853933145b6a7198533bc94b91195eb8212e1@ec2-23-21-171-249.compute-1.amazonaws.com:5432/d36olaagtfjli9?ssl=true')
 var app = express();
 var bodyParser = require('body-parser');
+var publicDir = require('path').join(__dirname,'/public');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.static(publicDir));
 
 app.set('view engine','ejs');
 app.get('/', function(req,res){
