@@ -10,6 +10,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B"
         crossorigin="anonymous">
+    <% include ../partials/linkcss %>
     <% include ../partials/linkdatatable %>
 
 </head>
@@ -40,7 +41,7 @@
                     <td>
                         <%= user.email%>
                     </td>
-                    
+
                     <td><a name="" id="" class="btn btn-primary" href="/users/<%= user.id%>" role="button">Edit</a>
                         <a name="" id="" onclick="return confirmDelete();" class="btn btn-danger" href="/user_delete/<%= user.id%>"
                             role="button">Delete</a>
