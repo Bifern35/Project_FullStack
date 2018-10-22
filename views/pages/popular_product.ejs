@@ -18,40 +18,35 @@
 <body style="background-color:#E6FCFF">
     <% include ../partials/navbar %>
     <div class="container">
-     <h2>Top 50 Purchases By Price</h2><br><br>
+        <h2>Top 15 Products By Quantity</h2><br><br>
         <table id="purchases" class="table table-striped dt-responsive nowrap" style="width:100% ">
+            <colgroup>
+                <col width="400">
+                <col width="250">
+                <col width="350">
+            </colgroup>
             <thead>
                 <tr>
-                    <th>Purchase ID</th>
                     <th>Product Name</th>
+                    <th>Total Quantity</th>
                     <th>Total Price</th>
-                    <th>User Name</th>
-                    <th>User E-mail</th>
-                    <th>Address</th>
                 </tr>
             </thead>
 
             <tbody>
-                <% purchases.forEach(function(purchase){ %>
+                <% products.forEach(function(product){ %>
                 <tr>
-                    <td scope="row">
-                        <%= purchase.purchase_id%>
+                    <td>
+                        <%= product.title%>
                     </td>
                     <td>
-                        <%= purchase.titles%>
+                        <%= product.quantity%>
                     </td>
                     <td>
-                        <%= purchase.price%>
+                        <%= product.price%>
                     </td>
-                    <td>
-                        <%= purchase.name%>
-                    </td>
-                    <td>
-                        <%= purchase.email%>
-                    </td>
-                    <td>
-                        <%= purchase.address%>
-                    </td>
+
+
                 </tr>
                 <% }); %>
             </tbody>

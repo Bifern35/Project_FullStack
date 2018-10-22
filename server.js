@@ -112,7 +112,8 @@ app.get('/purchases', function(req,res){
     inner join purchase_items ON purchase_items.purchase_id = purchases.id
     inner join products ON purchase_items.product_id = products.id
     group by purchase_items.purchase_id, purchases.name, purchases.address, users.email
-    order by purchase_items.purchase_id`;
+    order by price DESC
+    LIMIT 50;   `;
         db.any(sql)
         .then(function(data){
             console.log('DATA:'+data);
@@ -191,7 +192,21 @@ app.get('/user_delete/:userid', function(req,res){
             console.log('ERROR:'+error);
         })
 })
-
+app.get('/popularProduct', function(req,res){
+    var sql = `SELECT products.title,sum(quantity) as quantity,sum(products.price*quantity) as price  FROM purchase_items inner join products ON purchase_items.product_id = products.id
+    group by  products.title
+    order by quantity DESC
+    LIMIT 15`;
+        db.any(sql)
+        .then(function(data){
+            console.log('DATA:'+data);
+            res.render('pages/popular_product',{products : data});
+        })
+        .catch(function(error){
+            console.log('ERROR:'+error);
+        })
+    
+});
 var port = process.env.PORT || 3000;
     app.listen(port, function() {
     console.log('App is running on http://localhost:' + port);
