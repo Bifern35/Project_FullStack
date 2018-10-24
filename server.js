@@ -60,7 +60,7 @@ app.post('/product/update',function(req, res) {
     var price = req.body.price;
     var tags = req.body.tags;
     var created_at = req.body.created_at;
-    var sql=`update products set title = '${title}' , price= '${price}' , tags= '{${tags}}' , created_at='${created_at}' where id = ${id}`;
+    var sql=`update products set title = '${title}' , price= '${price}' , tags= '{${tags}} where id = ${id}`;
    
         db.any(sql)
         .then(function(data){
@@ -153,7 +153,7 @@ app.post('/user/update',function(req, res) {
     var email = req.body.email;
     var password = req.body.password;
     var created_at = req.body.created_at;
-    var sql=`update users set email = '${email}', password= '{${password}}' , created_at='${created_at}' where id = ${id}`;
+    var sql=`update users set email = '${email}', password= '{${password}}' where id = ${id}`;
    
         db.any(sql)
         .then(function(data){

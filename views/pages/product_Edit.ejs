@@ -11,7 +11,6 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B"
         crossorigin="anonymous">
     <% include ../partials/linkcss %>
-    <% include ../partials/linkdatepicker %>
 </head>
 
 <body style="background-color:#E6FCFF">
@@ -45,13 +44,8 @@
             </div>
             <div class="form-group">
                 <label for="">Create At</label>
-                <input value="<%= product.created_at %>" name="created_at" id="datepicker" width="100%" class="form-control"
-                    placeholder="" aria-describedby="helpId" />
-                <script>
-                    $('#datepicker').datepicker({
-                        uiLibrary: 'bootstrap4'
-                    });
-                </script>
+                <input type="text" value="<%= product.created_at %>" name="created_at" id="datepicker" width="100%" class="form-control"
+                    placeholder="" aria-describedby="helpId" readonly/>
                 <small id="helpId" class="text-muted">Date create</small>
             </div>
             <button type="submit" onclick="return confirmUpdate();" class="btn btn-success">Save</button>

@@ -12,7 +12,6 @@
         crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <% include ../partials/linkcss %>
-    <% include ../partials/linkdatepicker %>
 </head>
 
 <body style="background-color:#E6FCFF">
@@ -47,12 +46,7 @@
             <div class="form-group">
                 <label for="">Create At</label>
                 <input value="<%= user.created_at %>" name="created_at" id="datepicker" width="100%" class="form-control"
-                    placeholder="" aria-describedby="helpId" />
-                <script>
-                    $('#datepicker').datepicker({
-                        uiLibrary: 'bootstrap4'
-                    });
-                </script>
+                    placeholder="" aria-describedby="helpId" readonly/>
                 <small id="helpId" class="text-muted">Date create</small>
             </div>
             <button type="submit" onclick="return confirmUpdate();" class="btn btn-success">Save</button>
